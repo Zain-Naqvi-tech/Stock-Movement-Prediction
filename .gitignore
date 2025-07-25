@@ -1,0 +1,14 @@
+# Ignore secret keys
+.streamlit/secrets.toml
+
+# Ignore Python virtual environment
+venv/
+.env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS metadata
+.DS_Store
+Thumbs.db
