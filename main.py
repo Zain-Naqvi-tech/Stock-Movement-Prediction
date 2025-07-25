@@ -16,6 +16,7 @@ if st.button("Predict"):
 
     st.write("Cleaning text...")
     import nltk #nltk is a library for natural language processing
+    nltk.download('stopwords')
     from nltk.corpus import stopwords #stop words are common words that are not useful for sentiment analysis
     import re #re is a library for regular expressions
 
