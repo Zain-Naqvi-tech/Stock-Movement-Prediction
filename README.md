@@ -1,77 +1,130 @@
-Stock Movement Prediction App
+<<<<<<< HEAD
+# Stock Movement Prediction App
 
-This is a Streamlit-based web application that predicts the movement of a stock (up or down) based on recent news sentiment and historical stock closing prices. It uses the News API to fetch articles, applies Natural Language Processing (NLP) for sentiment analysis, incorporates stock price data, and outputs the predicted market direction.
+A Streamlit-based web application that predicts stock movement (up or down) based on recent news sentiment analysis and historical stock price data. The app combines natural language processing with financial data to provide market direction predictions.
 
-Live App - https://stock-movement-prediction-fhfktrtnopkzigqssdxod9.streamlit.app/
+**Live App:** [https://stock-movement-prediction-fhfktrtnopkzigqssdxod9.streamlit.app/](https://stock-movement-prediction-fhfktrtnopkzigqssdxod9.streamlit.app/)
 
--How it works
+## Features
 
-Input:
+- **Real-time News Analysis**: Fetches latest news articles related to specified companies
+- **Sentiment Analysis**: Uses FinBERT model for financial sentiment analysis
+- **Stock Data Integration**: Retrieves historical price data from Yahoo Finance
+- **Machine Learning Prediction**: Combines sentiment and technical indicators for predictions
+- **Interactive Web Interface**: User-friendly Streamlit frontend
+- **Live Deployment**: Accessible via Streamlit Cloud
 
-Company name (e.g., Tesla)
+## How It Works
 
-Stock symbol (e.g., TSLA)
+### Input
+- **Company name** (e.g., Tesla)
+- **Stock symbol** (e.g., TSLA)
 
--Data Collection:
+### Data Collection Process
 
-Fetches the latest news articles related to the company using NewsAPI
+1. **News Articles**: Fetches the latest 5 news articles related to the company using NewsAPI
+2. **Stock Data**: Retrieves 5 years of historical stock price data using Yahoo Finance
 
-Retrieves historical stock price data using Yahoo Finance for the given symbol
+### Text Processing Pipeline
 
--Text Cleaning and Preprocessing:
+1. **Text Cleaning**: 
+   - Removes punctuation, special characters, and links
+   - Converts text to lowercase
+   - Removes stopwords using NLTK
 
-Cleans headlines and descriptions by removing links, punctuation, stopwords, and extra spaces
+2. **Sentiment Analysis**:
+   - Uses FinBERT (ProsusAI/finbert) model for financial sentiment analysis
+   - Assigns polarity scores to each news headline
+   - Computes weighted average sentiment across all articles
 
-Applies tokenization and normalization using the nltk library
+### Technical Analysis
 
--Sentiment Analysis:
+The app calculates various technical indicators:
+- **Moving Averages**: 5-day and 10-day moving averages
+- **Price Returns**: 1-day and 5-day returns
+- **Volume Analysis**: Volume as percentage of 5-day average
+- **Price Range**: Daily range as percentage of close price
+- **MA Ratio**: Short-term to long-term moving average ratio
 
-Assigns polarity scores to each news item using rule-based sentiment analysis
+### Prediction Logic
 
-Computes a weighted average sentiment score across all news articles
+1. **Feature Engineering**: Combines sentiment scores with technical indicators
+2. **Model Training**: Uses Logistic Regression on historical data
+3. **Prediction**: Outputs binary prediction (Up/Down) for next trading day
+4. **Performance Metrics**: Displays confusion matrix and accuracy scores
 
--Price-Based Prediction Logic:
+## Tech Stack
 
-Retrieves the most recent 5 days of closing stock prices
+- **Frontend**: Streamlit
+- **Backend**: Python
+- **APIs**: 
+  - NewsAPI (news sentiment)
+  - Yahoo Finance (stock data)
+- **NLP**: 
+  - NLTK (text preprocessing)
+  - Transformers (FinBERT sentiment analysis)
+- **Machine Learning**: 
+  - Scikit-learn (Logistic Regression)
+  - Pandas (data manipulation)
+- **Deployment**: Streamlit Cloud
 
-Calculates a moving average from the last 5 days
+## Setup Instructions
 
-Compares this average with the current closing price to assess trend direction
+### Prerequisites
+- Python 3.7+
+- pip package manager
 
--Final Prediction:
+### Installation
 
-Combines the sentiment score and price trend information
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/stock-movement-prediction.git
+   cd stock-movement-prediction
+   ```
 
-Predicts whether the stock is likely to move up or down
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
--Tech Stack
+3. **Set up API key**:
+   - Create a file named `.streamlit/secrets.toml`
+   - Add your NewsAPI key:
+     ```toml
+     NEWS_API_KEY = "your_api_key_here"
+     ```
 
-Frontend: Streamlit
-Backend: Python
-APIs: NewsAPI, Yahoo Finance
-NLP: nltk
-Deployment: Streamlit Cloud
+4. **Run the app locally**:
+   ```bash
+   streamlit run main.py
+   ```
 
--Setup Instructions
+### Getting API Keys
 
-Clone the repository:
+1. **NewsAPI**: 
+   - Visit [newsapi.org](https://newsapi.org)
+   - Sign up for a free account
+   - Copy your API key
 
-git clone https://github.com/yourusername/stock-movement-prediction.git
-cd stock-movement-prediction
+## Deployment
 
--Install dependencies:
+### Streamlit Cloud Deployment
 
-pip install -r requirements.txt
+1. **Upload to GitHub**:
+   - Push your code to a GitHub repository
+   - Ensure `requirements.txt` is included
 
--Add your API key securely:
+2. **Connect to Streamlit Cloud**:
+   - Visit [share.streamlit.io](https://share.streamlit.io)
+   - Connect your GitHub account
+   - Select your repository
 
-Create a file named .streamlit/secrets.toml and add the following line:
-NEWS_API_KEY = "api key"
+3. **Configure Secrets**:
+   - In your Streamlit Cloud app settings
+   - Go to "Secrets" tab
+   - Add your `NEWS_API_KEY` securely
 
-Run the app locally:
-
-streamlit run main.py
-
-To deploy:
-
-Upload your repo to GitHub and connect it to Streamlit Cloud. Add your API key under the app’s "Secrets" tab on Streamlit Cloud for secure access.
+4. **Deploy**:
+   - Click "Deploy" to make your app live
+   - Your app will be accessible via the provided URL
+=======
