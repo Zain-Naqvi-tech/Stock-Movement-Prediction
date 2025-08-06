@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Stock Movement Prediction App
 
 A Streamlit-based web application that predicts stock movement (up or down) based on recent news sentiment analysis and historical stock price data. The app combines natural language processing with financial data to provide market direction predictions.
